@@ -26,7 +26,7 @@ chmod +x gear-node
 
 read -p "Enter Node name: " node_name;
 
-echo "
+echo -e"
 [Unit] 
 Description=Gear Node
 After=network.target
@@ -35,8 +35,8 @@ After=network.target
 Type=simple
 User=ubuntu
 WorkingDirectory=$HOME
-ExecStart=/root/gear-node \
- --telemetry-url 'ws://telemetry-backend-shard.gear-tech.io:32001/submit 0' \
+ExecStart=/root/gear-node \\
+ --telemetry-url 'ws://telemetry-backend-shard.gear-tech.io:32001/submit 0' \\
  --name '$node_name'
 Restart=always
 RestartSec=3
