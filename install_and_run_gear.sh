@@ -35,7 +35,7 @@ After=network.target
 Type=simple
 User=ubuntu
 WorkingDirectory=$HOME
-ExecStart=/root/gear-node \\
+ExecStart=$HOME/gear-node \\
  --telemetry-url 'ws://telemetry-backend-shard.gear-tech.io:32001/submit 0' \\
  --name '$node_name'
 Restart=always
