@@ -16,7 +16,7 @@ echo  "────────────────────────�
 
 sudo apt-get update
 
-sudo apt install -y git clang curl libssl-dev llvm libudev-dev
+#sudo apt install -y git clang curl libssl-dev llvm libudev-dev
 
 #curl https://sh.rustup.rs -sSf | sh
 
@@ -38,7 +38,7 @@ rm gear-nightly-linux-x86_64.tar.xz && \
 
 chmod +x gear-node
 
-read -p "Enter Node name: " node_name
+read -p "Enter Node name: " node_name;
 
 echo "
 [Unit] 
