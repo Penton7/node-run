@@ -33,7 +33,7 @@ After=network.target
 
 [Service]
 Type=simple
-User=ubuntu
+User=$USER
 WorkingDirectory=$HOME
 ExecStart=$HOME/gear-node \\
  --telemetry-url 'ws://telemetry-backend-shard.gear-tech.io:32001/submit 0' \\
