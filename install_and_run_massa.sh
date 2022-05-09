@@ -22,12 +22,10 @@ wget http://nz2.archive.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.1_1.1.1l-1
 sudo dpkg -i libssl1.1_1.1.1l-1ubuntu1.3_amd64.deb
 
 local massa_version=`wget -qO- https://api.github.com/repos/massalabs/massa/releases/latest | jq -r ".tag_name"`
-    wget -qO $HOME/massa.tar.gz "https://github.com/massalabs/massa/releases/download/${massa_version}/massa_${massa_version}_release_linux.tar.gz"
-    if [ `wc -c < "$HOME/massa.tar.gz"` -ge 1000 ]; then
-	rm -rf $HOME/massa/
-	tar -xvf $HOME/massa.tar.gz
-	chmod +x $HOME/massa/massa-node/massa-node $HOME/massa/massa-client/massa-client
-    fi
+wget -qO $HOME/massa.tar.gz "https://github.com/massalabs/massa/releases/download/${massa_version}/massa_${massa_version}_release_linux.tar.gz"
+rm -rf $HOME/massa/
+tar -xvf $HOME/massa.tar.gz
+chmod +x $HOME/massa/massa-node/massa-node $HOME/massa/massa-client/massa-client
 
 echo "[Unit]
 Description=Massa Node
