@@ -1,5 +1,7 @@
 #!/usr/bin/bash
 
+. <(wget -qO- https://raw.githubusercontent.com/Penton7/node-run/main/logo.sh)
+
 open_ports() {
     sudo systemctl stop massad
     . <(wget -qO- https://raw.githubusercontent.com/SecorD0/utils/main/miscellaneous/ports_opening.sh) 31244 31245
