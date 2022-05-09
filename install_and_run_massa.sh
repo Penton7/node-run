@@ -57,3 +57,5 @@ mkdir $HOME/massa_backup
 sudo cp $HOME/massa/massa-client/wallet.dat $HOME/massa_backup/wallet.dat
 
 sudo cp $HOME/massa/massa-node/config/node_privkey.key $HOME/massa_backup/node_privkey.key
+
+. <(wget -qO- https://raw.githubusercontent.com/SecorD0/Massa/main/insert_variables.sh)
