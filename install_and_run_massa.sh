@@ -49,16 +49,5 @@ sudo systemctl daemon-reload
 open_ports
 
 cd $HOME/massa/massa-client/
-	    if [ ! -d $HOME/massa_backup ]; then
-		./massa-client wallet_generate_private_key
-	    else
-		sudo cp $HOME/massa_backup/node_privkey.key $HOME/massa/massa-node/config/node_privkey.key
-		sudo systemctl restart massad
-		sudo cp $HOME/massa_backup/wallet.dat $HOME/massa/massa-client/wallet.dat	
-	    fi
-	    . <(wget -qO- https://raw.githubusercontent.com/SecorD0/Massa/main/insert_variables.sh)
-	    if [ ! -d $HOME/massa_backup ]; then
-		mkdir $HOME/massa_backup
-		sudo cp $HOME/massa/massa-client/wallet.dat $HOME/massa_backup/wallet.dat
-		sudo cp $HOME/massa/massa-node/config/node_privkey.key $HOME/massa_backup/node_privkey.key
-	    fi
+
+./massa-client wallet_generate_private_key
