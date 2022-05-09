@@ -52,6 +52,8 @@ cd $HOME/massa/massa-client/
 
 ./massa-client wallet_generate_private_key
 
+mkdir $HOME/massa_buckup
+
 sudo cp $HOME/massa/massa-client/wallet.dat $HOME/massa_backup/wallet.dat
 
 sudo cp $HOME/massa/massa-node/config/node_privkey.key $HOME/massa_backup/node_privkey.key
