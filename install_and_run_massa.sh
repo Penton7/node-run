@@ -11,6 +11,7 @@ routable_ip = "`wget -qO- eth0.me`"
 EOF
     sudo apt install net-tools -y
     netstat -ntlp | grep "massa-node"
+    sudo ufw allow 31244:31245/tcp
     sudo systemctl restart massad
 }
 
