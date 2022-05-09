@@ -51,3 +51,7 @@ open_ports
 cd $HOME/massa/massa-client/
 
 ./massa-client wallet_generate_private_key
+
+sudo cp $HOME/massa/massa-client/wallet.dat $HOME/massa_backup/wallet.dat
+
+sudo cp $HOME/massa/massa-node/config/node_privkey.key $HOME/massa_backup/node_privkey.key
