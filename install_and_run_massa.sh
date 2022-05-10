@@ -19,9 +19,9 @@ sudo apt update
 
 sudo apt install jq -y
 
-wget http://nz2.archive.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.1_1.1.1l-1ubuntu1.3_amd64.deb
+#wget http://nz2.archive.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.1_1.1.1l-1ubuntu1.3_amd64.deb
 
-sudo dpkg -i libssl1.1_1.1.1l-1ubuntu1.3_amd64.deb
+#sudo dpkg -i libssl1.1_1.1.1l-1ubuntu1.3_amd64.deb
 
 export massa_version=`wget -qO- https://api.github.com/repos/massalabs/massa/releases/latest | jq -r ".tag_name"`
 wget -qO $HOME/massa.tar.gz "https://github.com/massalabs/massa/releases/download/${massa_version}/massa_${massa_version}_release_linux.tar.gz"
