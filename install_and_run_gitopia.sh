@@ -38,7 +38,7 @@ After=network.target
 
 [Service]
 Type=simple
-User=ubuntu
+User=$USER
 WorkingDirectory=$HOME
 ExecStart=$HOME/go/bin/gitopiad start
 Restart=on-failure
