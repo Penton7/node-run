@@ -4,11 +4,13 @@
 
 sudo apt-get update;
 
-sudo apt-get install -y docker.io forta;
+sudo apt-get install -y docker.io;
 
 sudo groupadd docker;
 
 sudo usermod -aG docker $USER;
+
+sudo chmod 666 /var/run/docker.sock
 
 sudo systemctl restart docker
 
@@ -36,7 +38,9 @@ ip=$(wget -qO- eth0.me)
 aptos genesis set-validator-configuration \
     --keys-dir ~/$WORKSPACE --local-repository-dir ~/$WORKSPACE \
     --username $node_name \
-    --validator-host $ip:6180
+    --validator-host $ip:6180 \
+    --full-node-host $ip:6182
+
 
 echo "---
       root_key: "0x5243ca72b0766d9e9cbf2debf6153443b01a1e0e6d086c7ea206eaf6f8043956"
