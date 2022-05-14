@@ -16,8 +16,8 @@ sudo curl -L "https://github.com/docker/compose/releases/download/1.26.0/docker-
 
 sudo chmod +x /usr/local/bin/docker-compose
 
-wget -qO $HOME/aptos.tar.gz "https://github.com/aptos-labs/aptos-core/releases/download/aptos-cli-v0.1.1/aptos-cli-0.1.1-Ubuntu-x86_64.zip"
-tar -xvf $HOME/aptos.tar.gz
+wget -qO $HOME/aptos.zip "https://github.com/aptos-labs/aptos-core/releases/download/aptos-cli-v0.1.1/aptos-cli-0.1.1-Ubuntu-x86_64.zip"
+unzip $HOME/aptos.zip
 
 sudo cp ~/aptos /usr/bin/
 
