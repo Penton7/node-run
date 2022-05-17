@@ -34,4 +34,15 @@ sleep 15;
 
 docker-compose exec node ironfish config:set enableTelemetry true
 
+docker-compose down
+
+cd ~
+wget -O $HOME/ironfish_snapshot_08112021.tar.gz https://storage.nodes.guru/ironfish_snapshot_08112021.tar.gz
+mv $HOME/.ironfish/databases $HOME/.ironfish/databases_old
+tar -xf $HOME/ironfish_snapshot_08112021.tar.gz -C $HOME/.ironfish
+
+cd ~/ironfish/
+
+docker-compose up -d
+
 docker-compose exec node ironfish status
