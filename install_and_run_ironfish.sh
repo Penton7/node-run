@@ -44,5 +44,6 @@ tar -xf $HOME/ironfish_snapshot_08112021.tar.gz -C $HOME/.ironfish
 cd ~/ironfish/
 
 docker-compose up -d
+sleep 15;
 
 docker-compose exec node ironfish status
