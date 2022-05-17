@@ -24,7 +24,7 @@ wget https://raw.githubusercontent.com/Penton7/node-run/main/ironfish/docker-com
 
 read -p "Enter Node Name: " NODENAME;
 
-echo "node_name=$NODENAME"
+echo "node_name=$NODENAME" > .env
 
 docker-compose pull
 
