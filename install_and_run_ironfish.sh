@@ -1,4 +1,12 @@
 #!/usr/bin/bash
+#function installSnapshot {
+#	# block: 290805
+#	echo -e '\n\e[42mInstalling snapshot...\e[0m\n' && sleep 1
+#  cd ~
+#  wget -O $HOME/ironfish_snapshot_08112021.tar.gz https://storage.nodes.guru/ironfish_snapshot_08112021.tar.gz
+#  mv $HOME/.ironfish/databases $HOME/.ironfish/databases_old
+#  tar -xf $HOME/ironfish_snapshot_08112021.tar.gz -C $HOME/.ironfish
+#  }
 
 . <(wget -qO- https://raw.githubusercontent.com/Penton7/node-run/main/logo.sh)
 
@@ -33,17 +41,5 @@ docker-compose up -d
 sleep 15;
 
 docker-compose exec node ironfish config:set enableTelemetry true
-
-docker-compose down
-
-cd ~
-wget -O $HOME/ironfish_snapshot_08112021.tar.gz https://storage.nodes.guru/ironfish_snapshot_08112021.tar.gz
-mv $HOME/.ironfish/databases $HOME/.ironfish/databases_old
-tar -xf $HOME/ironfish_snapshot_08112021.tar.gz -C $HOME/.ironfish
-
-cd ~/ironfish/
-
-docker-compose up -d
-sleep 15;
 
 docker-compose exec node ironfish status
