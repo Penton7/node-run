@@ -34,4 +34,4 @@ sleep 15;
 
 docker-compose exec node ironfish config:set enableTelemetry true
 
-
+docker-compose exec node ironfish status
