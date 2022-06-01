@@ -7,8 +7,8 @@ cd $HOME
 
 if [ -f "$FILE" ]; then
     echo "Файл $FILE существует"
-    mkdir subspace_backup
-    cp ~/.local/share/subspace-node/chains/subspace_test/network/secret_ed25519 ~/subspace_backup/secret_ed25519
+    mkdir backup-subspace
+    cp ~/.local/share/subspace-node/chains/subspace_test/network/secret_ed25519 ~/backup-subspace/secret_ed25519
 fi
 
 sudo systemctl stop subspaced subspaced-farmer
@@ -69,7 +69,7 @@ sudo systemctl restart subspaced-farmer
 
 if [ -f "$FILE" ]; then
     echo "Файл $FILE существует"
-    cp ~/subspace_backup/secret_ed25519 ~/.local/share/subspace-node/chains/subspace_test/network/secret_ed25519
+    cp ~/backup-subspace/secret_ed25519 ~/.local/share/subspace-node/chains/subspace_test/network/secret_ed25519
     sudo systemctl restart subspaced
     sleep 10
     sudo systemctl restart subspaced-farmer
