@@ -14,12 +14,11 @@ fi
 sudo systemctl stop subspaced subspaced-farmer
 
 latest=$(wget -qO- https://api.github.com/repos/subspace/subspace/releases/latest | jq -r ".tag_name") && \
-wget https://github.com/subspace/subspace/releases/download/${latest}/subspace-farmer-ubuntu-x86_64-${latest} -O farmer && \
-wget https://github.com/subspace/subspace/releases/download/${latest}/subspace-node-ubuntu-x86_64-${latest} -O subspace && \
-sudo chmod +x * && \
-sudo mv * /usr/local/bin/ && \
-cd $HOME && \
-rm -Rvf $HOME/subspace
+wget https://github.com/subspace/subspace/releases/download/${latest}/subspace-farmer-ubuntu-x86_64-${latest} -O subspace-farmer && \
+wget https://github.com/subspace/subspace/releases/download/${latest}/subspace-node-ubuntu-x86_64-${latest} -O subspace-node && \
+
+chmod +x subspace* && \
+mv subspace* /usr/local/bin/
 
 read -p "Enter Node Name: " SUBSPACE_NODENAME;
 read -p "Enter Your Wallet: " SUBSPACE_WALLET;
