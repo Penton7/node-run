@@ -7,7 +7,7 @@ cd $HOME
 
 if [ -f "$FILE" ]; then
     echo "Файл $FILE существует"
-    mkrdir subspace_backup
+    mkdir subspace_backup
     cp ~/.local/share/subspace-node/chains/subspace_test/network/secret_ed25519 ~/subspace_backup/secret_ed25519
 fi
 
