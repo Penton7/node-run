@@ -66,11 +66,3 @@ sudo systemctl enable subspaced subspaced-farmer
 sudo systemctl restart subspaced
 sleep 10
 sudo systemctl restart subspaced-farmer
-
-if [ -f "$FILE" ]; then
-    echo "Файл $FILE существует"
-    cp ~/backup-subspace/secret_ed25519 ~/.local/share/subspace-node/chains/subspace_test/network/secret_ed25519
-    sudo systemctl restart subspaced
-    sleep 10
-    sudo systemctl restart subspaced-farmer
-fi
