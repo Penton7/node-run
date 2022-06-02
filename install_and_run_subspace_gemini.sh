@@ -36,8 +36,7 @@ After=network.target
 [Service]
 User=$USER
 Type=simple
-ExecStart=$(which subspace-node) --chain gemini-1 --execution wasm --rpc-cors all --rpc-methods unsafe --ws-external --validator --telemetry-url \"wss://telemetry.polkadot.io/submit/ 1\" --telemetry-url \"wss://telemetry.subspace.network/submit 1\" --name $SUBSPACE_NODENAME
-Restart=on-failure
+ExecStart=$(which subspace-node) --chain "gemini-1" --execution wasm --unsafe-pruning --pruning 1024 --keep-blocks 1024 --port 30333 --rpc-cors all --rpc-methods safe --unsafe-ws-external --validator --name "$SUBSPACE_NODENAME"
 LimitNOFILE=65535
 
 [Install]
