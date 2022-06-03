@@ -33,43 +33,43 @@ echo 'export SUBSPACE_WALLET='$SUBSPACE_WALLET >> $HOME/.bash_profile
 source ~/.bash_profile
 sleep 1
 
-echo "
+sudo tee <<EOF >/dev/null /etc/systemd/system/subspaced.service
 [Unit]
 Description=Subspace Node
 After=network.target
 [Service]
 Type=simple
 User=$USER
-ExecStart=$(which subspace) \\\\
---chain="gemini-1" \\\\
---execution="wasm" \\\\
---pruning=1024 \\\\
---keep-blocks=1024 \\\\
---validator \\\\
+ExecStart=$(which subspace) \\
+--chain="gemini-1" \\
+--execution="wasm" \\
+--pruning=1024 \\
+--keep-blocks=1024 \\
+--validator \\
 --name="${SUBSPACE_NODENAME}"
 Restart=on-failure
 RestartSec=10
 LimitNOFILE=65535
 [Install]
-WantedBy=multi-user.target" > $HOME/subspaced.service
+WantedBy=multi-user.target
+EOF
 
-
-echo "
+sudo tee <<EOF >/dev/null /etc/systemd/system/subspaced-farmer.service
 [Unit]
 Description=Subspace Farmer
 After=network.target
 [Service]
 Type=simple
 User=$USER
-ExecStart=$(which farmer) farm \\\\
---reward-address=${SUBSPACE_WALLET} \\\\
---plot-size=100g
+ExecStart=$(which farmer) farm \\
+--reward-address=${SUBSPACE_ADDRESS} \\
+--plot-size=${SPACE}
 Restart=on-failure
 RestartSec=10
 LimitNOFILE=65535
 [Install]
-WantedBy=multi-user.target" > $HOME/subspaced-farmer.service
-
+WantedBy=multi-user.target
+EOF
 
 mv $HOME/subspaced* /etc/systemd/system/
 sudo systemctl restart systemd-journald
