@@ -13,6 +13,10 @@ fi
 
 sudo systemctl stop subspaced subspaced-farmer
 
+farmer wipe && \
+subspace purge-chain --chain gemini-1 -y > /dev/null 2>&1 && \
+subspace purge-chain --chain testnet -y > /dev/null 2>&1
+
 latest=$(wget -qO- https://api.github.com/repos/subspace/subspace/releases/latest | jq -r ".tag_name") && \
 wget https://github.com/subspace/subspace/releases/download/${latest}/subspace-farmer-ubuntu-x86_64-${latest} -O subspace-farmer && \
 wget https://github.com/subspace/subspace/releases/download/${latest}/subspace-node-ubuntu-x86_64-${latest} -O subspace-node && \
@@ -29,31 +33,40 @@ echo 'export SUBSPACE_WALLET='$SUBSPACE_WALLET >> $HOME/.bash_profile
 source ~/.bash_profile
 sleep 1
 
-echo "[Unit]
+echo "
+[Unit]
 Description=Subspace Node
 After=network.target
-
 [Service]
-User=$USER
 Type=simple
-ExecStart=$(which subspace-node) --chain "gemini-1" --execution wasm --unsafe-pruning --pruning 1024 --keep-blocks 1024 --port 30333 --rpc-cors all --rpc-methods safe --unsafe-ws-external --validator --name "$SUBSPACE_NODENAME"
+User=$USER
+ExecStart=$(which subspace) \\\\
+--chain="gemini-1" \\\\
+--execution="wasm" \\\\
+--pruning=1024 \\\\
+--keep-blocks=1024 \\\\
+--validator \\\\
+--name="${SUBSPACE_NODENAME}"
+Restart=on-failure
+RestartSec=10
 LimitNOFILE=65535
-
 [Install]
 WantedBy=multi-user.target" > $HOME/subspaced.service
 
 
-echo "[Unit]
-Description=Subspaced Farm
+echo "
+[Unit]
+Description=Subspace Farmer
 After=network.target
-
 [Service]
-User=$USER
 Type=simple
-ExecStart=$(which subspace-farmer) farm --reward-address $SUBSPACE_WALLET --plot-size 20G
+User=$USER
+ExecStart=$(which farmer) farm \\\\
+--reward-address=${SUBSPACE_WALLET} \\\\
+--plot-size=100g
 Restart=on-failure
+RestartSec=10
 LimitNOFILE=65535
-
 [Install]
 WantedBy=multi-user.target" > $HOME/subspaced-farmer.service
 
