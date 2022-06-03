@@ -71,7 +71,6 @@ LimitNOFILE=65535
 WantedBy=multi-user.target
 EOF
 
-mv $HOME/subspaced* /etc/systemd/system/
 sudo systemctl restart systemd-journald
 sudo systemctl daemon-reload
 sudo systemctl enable subspaced subspaced-farmer
