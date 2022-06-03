@@ -40,7 +40,7 @@ After=network.target
 [Service]
 Type=simple
 User=$USER
-ExecStart=$(which subspace) \\
+ExecStart=$(which subspace-node) \\
 --chain="gemini-1" \\
 --execution="wasm" \\
 --pruning=1024 \\
@@ -61,8 +61,8 @@ After=network.target
 [Service]
 Type=simple
 User=$USER
-ExecStart=$(which farmer) farm \\
---reward-address=${$SUBSPACE_WALLET} \\
+ExecStart=$(which subspace-farmer) farm \\
+--reward-address=${SUBSPACE_WALLET} \\
 --plot-size=100G
 Restart=on-failure
 RestartSec=10
