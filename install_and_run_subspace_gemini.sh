@@ -13,7 +13,9 @@ fi
 
 sudo systemctl stop subspaced subspaced-farmer
 
-farmer wipe && \
+rm -rf ~/.local/share/subspace*
+
+subspace-farmer wipe && \
 subspace purge-chain --chain gemini-1 -y > /dev/null 2>&1 && \
 subspace purge-chain --chain testnet -y > /dev/null 2>&1
 
