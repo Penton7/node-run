@@ -5,7 +5,7 @@ cd $HOME
 
 wget https://github.com/Penton7/node-run/raw/main/sei/seid/seid
 
-mv ./seid /usr/bin/
+mv ./seid /usr/local/bin/
 
 read -p "Enter Node Name: " MONIKER;
 
