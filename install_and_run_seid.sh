@@ -1,8 +1,11 @@
 #!/usr/bin/bash
 . <(wget -qO- https://raw.githubusercontent.com/Penton7/node-run/main/logo.sh)
 
-
 cd $HOME
+
+wget https://github.com/Penton7/node-run/raw/main/sei/seid/seid
+
+mv ./seid /usr/bin/
 
 read -p "Enter Node Name: " MONIKER;
 
@@ -29,7 +32,7 @@ After=network.target
 Type=simple
 User=root
 WorkingDirectory=/root/
-ExecStart=/root/go/bin/seid start
+ExecStart=$(which seid) start
 Restart=on-failure
 StartLimitInterval=0
 RestartSec=3
