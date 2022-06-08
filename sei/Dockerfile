@@ -1,8 +1,8 @@
-FROM archlinux:latest as builder
+FROM ubuntu:latest as builder
 
 WORKDIR /sei
 
-RUN yes | pacman -Syy go git make gcc
+RUN apt update && apt-get install -y git make golang-go
 
 RUN git clone https://github.com/sei-protocol/sei-chain .
 
