@@ -1,0 +1,11 @@
+version: "3"
+
+services:
+  node:
+    image: sei-ubuntu:latest
+    volumes:
+      - ./entrypoint.sh:/entrypoint.sh
+#    restart: always
+
+networks:
+  default:

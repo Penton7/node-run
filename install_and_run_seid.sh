@@ -1,11 +1,27 @@
 #!/usr/bin/bash
 . <(wget -qO- https://raw.githubusercontent.com/Penton7/node-run/main/logo.sh)
 
+apt update && apt-get install -y git make
+
 cd $HOME
 
-wget https://github.com/Penton7/node-run/raw/main/sei/seid/seid
-chmod +X seid
-mv ./seid /usr/local/bin/
+ver="1.18.1" && \
+wget "https://golang.org/dl/go$ver.linux-amd64.tar.gz" && \
+sudo rm -rf /usr/local/go && \
+sudo tar -C /usr/local -xzf "go$ver.linux-amd64.tar.gz" && \
+rm "go$ver.linux-amd64.tar.gz" && \
+echo "export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin" >> $HOME/.bash_profile && \
+source $HOME/.bash_profile && \
+go version
+
+git clone https://github.com/sei-protocol/sei-chain.git
+cd sei-chain
+git checkout 1.0.2beta
+
+make install;
+
+mv ~/go/bin/seid /usr/local/bin/
+
 
 read -p "Enter Node Name: " MONIKER;
 
@@ -47,5 +63,3 @@ sudo systemctl restart systemd-journald
 sudo systemctl daemon-reload
 sudo systemctl enable seid.service
 sudo systemctl restart seid
-
-
