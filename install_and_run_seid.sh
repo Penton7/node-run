@@ -16,7 +16,7 @@ go version
 
 git clone https://github.com/sei-protocol/sei-chain.git
 cd sei-chain
-git checkout 1.0.2beta
+git checkout 1.0.3beta
 
 make install;
 
