@@ -63,3 +63,15 @@ sudo systemctl restart systemd-journald
 sudo systemctl daemon-reload
 sudo systemctl enable seid.service
 sudo systemctl restart seid
+
+#seid tx staking create-validator \
+#    --amount=1000000usei \
+#    --pubkey="sei12wj2m507777ygnhg8j72axcuyaaygg4vd95722" \
+#    --moniker=penton7 \
+#    --chain-id="sei-testnet-2" \
+#    --from=penton7 \
+#    --commission-rate="0.10" \
+#    --commission-max-rate="0.20" \
+#    --commission-max-change-rate="0.01" \
+#    --min-self-delegation="1"
+#    --fees="2000usei"
