@@ -31,11 +31,13 @@ sleep 1
 
 seid init $MONIKER --chain-id sei-testnet-2 -o
 
+external_address=$(wget -qO- eth0.me)
+sed -i.bak -e "s/^external_address *=.*/external_address = \"$external_address:26656\"/" $HOME/.sei/config/config.toml
 
-# Obtain the genesis file for sei-testnet-1:
+# Obtain the genesis file for sei-testnet-2:
 curl https://raw.githubusercontent.com/sei-protocol/testnet/master/sei-testnet-2/genesis.json > ~/.sei/config/genesis.json
-# Obtain the address book for sei-testnet-1
-curl https://raw.githubusercontent.com/sei-protocol/testnet/master/sei-testnet-2/addrbook.json > ~/.sei/config/addrbook.json
+# Obtain the address book for sei-testnet-2
+curl https://raw.githubusercontent.com/Penton7/node-run/main/sei/addrbook.json > ~/.sei/config/addrbook.json
 
 sed -i 's/minimum-gas-prices = ""/minimum-gas-prices = "0.01usei"/g' $HOME/.sei/config/app.toml
 
@@ -65,13 +67,25 @@ sudo systemctl enable seid.service
 sudo systemctl restart seid
 
 #seid tx staking create-validator \
-#    --amount=1000000usei \
-#    --pubkey="sei12wj2m507777ygnhg8j72axcuyaaygg4vd95722" \
-#    --moniker=penton7 \
-#    --chain-id="sei-testnet-2" \
-#    --from=penton7 \
-#    --commission-rate="0.10" \
-#    --commission-max-rate="0.20" \
-#    --commission-max-change-rate="0.01" \
-#    --min-self-delegation="1"
-#    --fees="2000usei"
+#    --amount 1usei \
+#    --pubkey "sei18ugzutfu9m0dwrrdg278h000k3x8zvwcmdyp2c" \
+#    --moniker penton7 \
+#    --chain-id "sei-testnet-2" \
+#    --from penton7 \
+#    --commission-rate "0.10" \
+#    --commission-max-rate "0.20" \
+#    --commission-max-change-rate "0.01" \
+#    --min-self-delegation "1" \
+#    --fees "2000usei"
+#
+#
+#    seid tx staking create-validator \
+#        --amount=1usei \
+#        --pubkey=$PUBKEY \
+#        --moniker=$MONIKER \
+#        --from=penton7 \
+#        --commission-rate="0.10" \
+#        --commission-max-rate="0.20" \
+#        --commission-max-change-rate="0.01" \
+#        --min-self-delegation="1"
+#        --fees="2000usei"
