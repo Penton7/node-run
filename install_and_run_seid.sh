@@ -1,7 +1,7 @@
 #!/usr/bin/bash
 . <(wget -qO- https://raw.githubusercontent.com/Penton7/node-run/main/logo.sh)
 
-apt update && apt-get install -y git make
+apt update && apt-get install -y git make build-essential
 
 cd $HOME
 
