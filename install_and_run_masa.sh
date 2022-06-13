@@ -43,4 +43,4 @@ PRIVATE_CONFIG=ignore docker-compose -f docker-compose.01k.yml up -d
 
 sleep 5
 
-docker-compose exec masa-node geth attach /qdata/dd/geth.ipc --exec web3.admin.nodeInfo.enode | sed "s|127.0.0.1|$(wget -qO- eth0.me)|"
+docker-compose -f docker-compose.01k.yml exec masa-node geth attach /qdata/dd/geth.ipc --exec web3.admin.nodeInfo.enode | sed "s|127.0.0.1|$(wget -qO- eth0.me)|"
