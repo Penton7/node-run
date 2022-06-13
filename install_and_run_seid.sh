@@ -1,7 +1,7 @@
 #!/usr/bin/bash
 . <(wget -qO- https://raw.githubusercontent.com/Penton7/node-run/main/logo.sh)
 
-apt update && apt-get install -y git make
+apt update && apt-get install -y git make build-essential
 
 cd $HOME
 
@@ -16,7 +16,7 @@ go version
 
 git clone https://github.com/sei-protocol/sei-chain.git
 cd sei-chain
-git checkout 1.0.3beta
+git checkout 1.0.3beta-branch
 
 make install;
 
