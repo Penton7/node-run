@@ -37,7 +37,7 @@ wget https://raw.githubusercontent.com/Penton7/node-run/main/masa/docker-compose
 
 read -p "Enter Node Name: " node_name;
 
-echo "NODE_ID=$node_name"
+echo "NODE_ID=$node_name" > .env
 
 PRIVATE_CONFIG=ignore docker-compose -f docker-compose.01k.yml up -d
 
