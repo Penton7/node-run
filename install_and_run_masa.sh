@@ -1,4 +1,4 @@
-!/usr/bin/bash
+#!/usr/bin/bash
 
 function checkDocker {
   if systemctl --all --type service | grep -q "docker";then
