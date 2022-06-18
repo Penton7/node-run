@@ -25,7 +25,9 @@ checkDocker
 
 cd $HOME
 
-mkdir sui && cd sui
+git clone https://github.com/MystenLabs/sui.git
+
+cd sui/docker/fullnode
 
 wget https://github.com/MystenLabs/sui/raw/main/crates/sui-config/data/fullnode-template.yaml
 
