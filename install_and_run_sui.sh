@@ -37,8 +37,8 @@ wget https://github.com/MystenLabs/sui/raw/main/crates/sui-config/data/fullnode-
 
 wget https://github.com/MystenLabs/sui-genesis/raw/main/devnet/genesis.blob
 
-sed "s/3.9/3.3/g" docker-compose.yaml
+sed -i "s/3.9/3.3/g" docker-compose.yaml
 
-sed "s/127.0.0.1/0.0.0.0/g" fullnode-template.yaml
+sed -i "s/127.0.0.1/0.0.0.0/g" fullnode-template.yaml
 
 docker-compose up -d
