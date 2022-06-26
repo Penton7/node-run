@@ -16,7 +16,7 @@ source ~/.bash_profile
 
 curl https://get.gitopia.com | sudo bash
 
-git clone gitopia://gitopia1dlpc7ps63kj5v0kn5v8eq9sn2n8v8r5z9jmwff/gitopia
+git clone -b v0.13.0 gitopia://gitopia1dlpc7ps63kj5v0kn5v8eq9sn2n8v8r5z9jmwff/gitopia;
 
 cd gitopia && make install
 
@@ -27,7 +27,7 @@ export GITOPIA_CHAIN_ID="gitopia-janus-testnet"
 
 gitopiad init --chain-id "gitopia-janus-testnet" "moniker-from-the-guide"
 
-git clone -b v0.13.0 gitopia://gitopia1dlpc7ps63kj5v0kn5v8eq9sn2n8v8r5z9jmwff/testnets;
+git clone gitopia://gitopia1dlpc7ps63kj5v0kn5v8eq9sn2n8v8r5z9jmwff/testnets;
 
 cp ./testnets/$GITOPIA_CHAIN_ID/genesis.json $HOME/.gitopia/config/genesis.json;
 sudo tee <<EOF >/dev/null /etc/systemd/system/gitopiad.service
