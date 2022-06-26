@@ -21,15 +21,19 @@ git clone -b v0.13.0 gitopia://gitopia1dlpc7ps63kj5v0kn5v8eq9sn2n8v8r5z9jmwff/gi
 cd gitopia && make install
 
 sudo cp $HOME/go/bin/gitopiad /usr/bin/gitopiad
-
-export GITOPIA_MONIKER="moniker-from-the-guide"
+read -p "Enter Node Name: " MONIKER
+export GITOPIA_MONIKER="$MONIKER"
 export GITOPIA_CHAIN_ID="gitopia-janus-testnet"
 
-gitopiad init --chain-id "gitopia-janus-testnet" "moniker-from-the-guide"
+gitopiad init --chain-id $GITOPIA_CHAIN_ID $GITOPIA_MONIKER
 
-git clone gitopia://gitopia1dlpc7ps63kj5v0kn5v8eq9sn2n8v8r5z9jmwff/testnets;
 
-cp ./testnets/$GITOPIA_CHAIN_ID/genesis.json $HOME/.gitopia/config/genesis.json;
+curl -s "$GITOPIA_NET/genesis.json" > $HOME/.gitopia/config/genesis.json
+
+gitopiad validate-genesis
+#git clone gitopia://gitopia1dlpc7ps63kj5v0kn5v8eq9sn2n8v8r5z9jmwff/testnets;
+
+#cp ./testnets/$GITOPIA_CHAIN_ID/genesis.json $HOME/.gitopia/config/genesis.json;
 sudo tee <<EOF >/dev/null /etc/systemd/system/gitopiad.service
 
 [Unit]
@@ -53,6 +57,6 @@ sudo tee <<EOF >/dev/null /etc/systemd/journald.conf
 Storage=persistent
 EOF
 
+sudo systemctl daemon-reload
 sudo systemctl restart systemd-journald
-
 sudo systemctl restart gitopiad
