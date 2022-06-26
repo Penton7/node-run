@@ -27,13 +27,11 @@ export GITOPIA_CHAIN_ID="gitopia-janus-testnet"
 
 gitopiad init --chain-id $GITOPIA_CHAIN_ID $GITOPIA_MONIKER
 
-
-curl -s "$GITOPIA_NET/genesis.json" > $HOME/.gitopia/config/genesis.json
+git clone gitopia://gitopia1dlpc7ps63kj5v0kn5v8eq9sn2n8v8r5z9jmwff/testnets;
+cp ./testnets/$GITOPIA_CHAIN_ID/genesis.json $HOME/.gitopia/config/genesis.json;
 
 gitopiad validate-genesis
-#git clone gitopia://gitopia1dlpc7ps63kj5v0kn5v8eq9sn2n8v8r5z9jmwff/testnets;
 
-#cp ./testnets/$GITOPIA_CHAIN_ID/genesis.json $HOME/.gitopia/config/genesis.json;
 sudo tee <<EOF >/dev/null /etc/systemd/system/gitopiad.service
 
 [Unit]
