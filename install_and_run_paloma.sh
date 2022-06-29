@@ -51,6 +51,27 @@ $TIKER config chain-id $CHAIN && \
 $TIKER config keyring-backend test && \
 $TIKER config node $NODE
 
+# Creating wallet
+$TIKER keys add $WALLET
+sleep 10
+echo "SAVE MNEMONIC!!!!"
+
+# Set variables | ONE COMMAND
+VALOPER=$($TIKER keys show $WALLET --bech val -a) && \
+ADDRESS=$($TIKER keys show $WALLET --address) && \
+echo "export VALOPER=$VALOPER" >> $HOME/.bash_profile && \
+echo "export ADDRESS=$ADDRESS" >> $HOME/.bash_profile && \
+source $HOME/.bash_profile
+
+cd $HOME/$CONFIG/config
+# Download ZIP genesis | ONE COMMAND
+wget -O genesis.json $GENESIS_JSON_PATH
+
+sha256sum genesis.json
+# 922f6ae493fa9a68f88894802ab3a9507dd92b38e090a71e92be42827490ef48  genesis.json
+
+wget -O addrbook.json https://raw.githubusercontent.com/palomachain/testnet/master/paloma-testnet-5/addrbook.json
+
 sudo tee /etc/systemd/system/$TIKER.service > /dev/null <<EOF
 [Unit]
 Description=$PROJECT Node
