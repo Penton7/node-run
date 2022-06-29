@@ -23,6 +23,10 @@ sudo apt-get update;
 
 checkDocker
 
+sudo curl -L "https://github.com/docker/compose/releases/download/1.26.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+
+sudo chmod +x /usr/local/bin/docker-compose
+
 cd $HOME
 
 git clone https://github.com/MystenLabs/sui.git
@@ -33,8 +37,8 @@ wget https://github.com/MystenLabs/sui/raw/main/crates/sui-config/data/fullnode-
 
 wget https://github.com/MystenLabs/sui-genesis/raw/main/devnet/genesis.blob
 
-sed "s/3.9/3.3/g" docker-compose.yaml
+sed -i "s/3.9/3.3/g" docker-compose.yaml
 
-sed "s/127.0.0.1/0.0.0.0/g" fullnode-template.yaml
+sed -i "s/127.0.0.1/0.0.0.0/g" fullnode-template.yaml
 
 docker-compose up -d
