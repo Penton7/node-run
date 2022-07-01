@@ -52,8 +52,8 @@ aptos genesis set-validator-configuration \
     --username $node_name \
     --validator-host $ip:6180
 
-aptos key generate --output-file ~/.aptos/root_key
-key_pub=$(cat ~/.aptos/root_key.pub)
+aptos key generate --output-file root_key
+key_pub=$(cat root_key.pub)
 key="0x"$key_pub
 
 echo "---
