@@ -44,7 +44,7 @@ wget https://raw.githubusercontent.com/aptos-labs/aptos-core/main/docker/compose
 ip=$(wget -qO- eth0.me)
 
 
-aptos genesis generate-keys --output-dir ~/$WORKSPACE
+aptos genesis generate-keys --assume-yes --output-dir ~/$WORKSPACE
 read -p "Enter Node name: " node_name;
 
 aptos genesis set-validator-configuration \
