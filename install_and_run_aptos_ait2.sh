@@ -39,13 +39,10 @@ cd ~/$WORKSPACE
 
 #wget https://raw.githubusercontent.com/Penton7/node-run/main/aptos/docker-compose.yml
 wget https://raw.githubusercontent.com/aptos-labs/aptos-core/main/docker/compose/aptos-node/docker-compose.yaml
-wget https://raw.githubusercontent.com/aptos-labs/aptos-core/main/docker/compose/aptos-node/docker-compose-fullnode.yaml
 wget https://raw.githubusercontent.com/aptos-labs/aptos-core/main/docker/compose/aptos-node/validator.yaml
-wget https://raw.githubusercontent.com/aptos-labs/aptos-core/main/docker/compose/aptos-node/fullnode.yaml
 
 ip=$(wget -qO- eth0.me)
-sed -i "s/<Validator IP Address>/$ip/g" fullnode.yaml
-#sed -i "s/noise-ik/ln-noise-ik/g" fullnode.yaml
+
 
 aptos genesis generate-keys --output-dir ~/$WORKSPACE
 read -p "Enter Node name: " node_name;
@@ -53,12 +50,14 @@ read -p "Enter Node name: " node_name;
 aptos genesis set-validator-configuration \
     --keys-dir ~/$WORKSPACE --local-repository-dir ~/$WORKSPACE \
     --username $node_name \
-    --validator-host $ip:6180 \
-    --full-node-host $ip:6182
+    --validator-host $ip:6180
 
+aptos key generate --output-file root_key
+key_pub=$(cat ~/.aptos/root_key.pub)
+key="0x"$key_pub
 
 echo "---
-      root_key: "F22409A93D1CD12D2FC92B5F8EB84CDCD24C348E32B3E7A720F3D2E288E63394"
+      root_key: "$key"
       users:
         - $node_name
       chain_id: 40
@@ -77,4 +76,3 @@ unzip framework.zip
 aptos genesis generate-genesis --local-repository-dir ~/$WORKSPACE --output-dir ~/$WORKSPACE
 
 docker-compose up -d
-docker-compose up -f docker-compose-fullnode.yaml -d
