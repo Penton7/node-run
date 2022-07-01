@@ -1,18 +1,28 @@
 #!/usr/bin/bash
+function checkDocker {
+  if systemctl --all --type service | grep -q "docker";then
+      echo "docker exists."
+  else
+      echo "docker does NOT exist."
+      sudo apt-get install -y docker.io;
+
+      sudo groupadd docker;
+
+      sudo usermod -aG docker $USER;
+
+      sudo chmod 666 /var/run/docker.sock
+
+      sudo systemctl restart docker
+  fi
+}
 
 . <(wget -qO- https://raw.githubusercontent.com/Penton7/node-run/main/logo.sh)
 
 sudo apt-get update;
 
-sudo apt-get install -y docker.io unzip;
+sudo apt-get install -y unzip;
 
-sudo groupadd docker;
-
-sudo usermod -aG docker $USER;
-
-sudo chmod 666 /var/run/docker.sock
-
-sudo systemctl restart docker
+checkDocker
 
 sudo curl -L "https://github.com/docker/compose/releases/download/1.26.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 
