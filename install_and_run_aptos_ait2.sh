@@ -56,7 +56,6 @@ echo "---
       root_key: "F22409A93D1CD12D2FC92B5F8EB84CDCD24C348E32B3E7A720F3D2E288E63394"
       users:
         - $node_name
-      chain_id: 5
       chain_id: 40
       min_stake: 0
       max_stake: 100000
