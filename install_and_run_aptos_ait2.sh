@@ -41,10 +41,12 @@ wget https://raw.githubusercontent.com/Penton7/node-run/main/aptos/docker-compos
 wget https://raw.githubusercontent.com/aptos-labs/aptos-core/main/docker/compose/aptos-node/validator.yaml
 wget https://raw.githubusercontent.com/aptos-labs/aptos-core/main/docker/compose/aptos-node/fullnode.yaml
 
+ip=$(wget -qO- eth0.me)
+sed -i "s/<Validator IP Address>/$ip/g" fullnode.yaml
+
 aptos genesis generate-keys --output-dir ~/$WORKSPACE
 read -p "Enter Node name: " node_name;
 
-ip=$(wget -qO- eth0.me)
 aptos genesis set-validator-configuration \
     --keys-dir ~/$WORKSPACE --local-repository-dir ~/$WORKSPACE \
     --username $node_name \
