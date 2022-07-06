@@ -20,12 +20,12 @@ read -p "Enter Wallet Name: " WALLET;
 
 # Set variables
 TIKER=palomad && \
-CHAIN=paloma-testnet-5 && \
+CHAIN=paloma-testnet-6 && \
 TOKEN=ugrain && \
 PROJECT=palomad && \
 CONFIG=.paloma && \
 NODE=http://localhost:26657 && \
-GENESIS_JSON_PATH=https://raw.githubusercontent.com/palomachain/testnet/master/paloma-testnet-5/genesis.json
+GENESIS_JSON_PATH=https://raw.githubusercontent.com/palomachain/testnet/master/paloma-testnet-6/genesis.json
 
 # ONE COMMAND
 echo "export MONIKER=$MONIKER" >> $HOME/.bash_profile && \
@@ -40,7 +40,7 @@ echo "export GENESIS_JSON_PATH=$GENESIS_JSON_PATH" >> $HOME/.bash_profile && \
 source $HOME/.bash_profile
 
 # Get binar
-sudo wget -O - https://github.com/palomachain/paloma/releases/download/v0.2.4-prealpha/paloma_0.2.4-prealpha_Linux_x86_64.tar.gz | \
+sudo wget -O - https://github.com/palomachain/paloma/releases/download/v0.2.5-prealpha/paloma_0.2.5-prealpha_Linux_x86_64.tar.gz | \
 sudo tar -C /usr/local/bin -xvzf - palomad
 sudo chmod +x /usr/local/bin/palomad
 # Required until we figure out cgo
@@ -70,7 +70,7 @@ wget -O genesis.json $GENESIS_JSON_PATH
 sha256sum genesis.json
 # 922f6ae493fa9a68f88894802ab3a9507dd92b38e090a71e92be42827490ef48  genesis.json
 
-wget -O addrbook.json https://raw.githubusercontent.com/palomachain/testnet/master/paloma-testnet-5/addrbook.json
+wget -O addrbook.json https://raw.githubusercontent.com/palomachain/testnet/master/paloma-testnet-6/addrbook.json
 
 sudo tee /etc/systemd/system/$TIKER.service > /dev/null <<EOF
 [Unit]
