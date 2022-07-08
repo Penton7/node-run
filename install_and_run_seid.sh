@@ -16,7 +16,7 @@ go version
 
 git clone https://github.com/sei-protocol/sei-chain.git
 cd sei-chain
-git checkout 1.0.3beta
+git checkout 1.0.6beta
 
 make install;
 
@@ -32,7 +32,7 @@ sleep 1
 seid init $MONIKER --chain-id sei-testnet-2 -o
 
 external_address=$(wget -qO- eth0.me)
-sed -i.bak -e "s/^external_address *=.*/external_address = \"$external_address:26656\"/" $HOME/.sei/config/config.toml
+sed -i.bak -e "s/^external_address *=.*/external_address = \"$external_address:26666\"/" $HOME/.sei/config/config.toml
 
 # Obtain the genesis file for sei-testnet-2:
 curl https://raw.githubusercontent.com/sei-protocol/testnet/master/sei-testnet-2/genesis.json > ~/.sei/config/genesis.json
