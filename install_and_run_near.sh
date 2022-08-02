@@ -1,7 +1,7 @@
 #!/usr/bin/bash
 . <(wget -qO- https://raw.githubusercontent.com/Penton7/node-run/main/logo.sh)
 
-sudo apt install -y git binutils-dev libcurl4-openssl-dev zlib1g-dev libdw-dev libiberty-dev cmake gcc g++ python docker.io protobuf-compiler libssl-dev pkg-config llvm cargo
+sudo apt install -y git binutils-dev libcurl4-openssl-dev zlib1g-dev libdw-dev libiberty-dev cmake gcc g++ python protobuf-compiler libssl-dev pkg-config llvm cargo
 sudo apt install clang build-essential make
 sudo apt install curl jq
 curl -sL https://deb.nodesource.com/setup_18.x | sudo -E bash -
@@ -20,7 +20,11 @@ export PATH="$USER_BASE_BIN:$PATH"
 
 cd $HOME
 
+rm /usr/bin/rust*
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+
+source ~/.profile
+source ~/.cargo/env
 
 git clone https://github.com/near/nearcore
 cd nearcore
@@ -56,28 +60,3 @@ EOF
 sudo systemctl daemon-reload
 sudo systemctl enable neard
 sudo systemctl restart neard
-
-#seid tx staking create-validator \
-#    --amount 1usei \
-#    --pubkey "sei18ugzutfu9m0dwrrdg278h000k3x8zvwcmdyp2c" \
-#    --moniker penton7 \
-#    --chain-id "sei-testnet-2" \
-#    --from penton7 \
-#    --commission-rate "0.10" \
-#    --commission-max-rate "0.20" \
-#    --commission-max-change-rate "0.01" \
-#    --min-self-delegation "1" \
-#    --fees "2000usei"
-#
-#
-#    seid tx staking create-validator \
-#        --amount=1usei \
-#        --pubkey=$PUBKEY \
-#        --moniker=$MONIKER \
-#        --chain-id "sei-testnet-2" \
-#        --from=penton7 \
-#        --commission-rate="0.10" \
-#        --commission-max-rate="0.20" \
-#        --commission-max-change-rate="0.01" \
-#        --min-self-delegation="1" \
-#        --fees="2000usei"
