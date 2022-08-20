@@ -7,7 +7,7 @@ services:
       - ~/.ironfish:/root/.ironfish
     tty: true
     restart: always
-    command: ["start", "--graffiti", "$node_name", "--name", "$node_name"]
+    command: ["start", "--graffiti", "$node_name", "--name", "$node_name", "--upgrade"]
 
 #  miner:
 #    image: ghcr.io/iron-fish/ironfish:latest
