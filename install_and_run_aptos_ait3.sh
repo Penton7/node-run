@@ -71,6 +71,7 @@ max_lockup_duration_secs: 2592000
 recurring_lockup_duration_secs: 86400
 required_proposer_stake: 100000000000000
 rewards_apy_percentage: 10
+initial_lockup_timestamp: 1656615600
 voting_duration_secs: 43200
 voting_power_increase_limit: 20" > layout.yaml
 
