@@ -66,6 +66,8 @@ is_test: true
 min_stake: 100000000000000
 min_voting_threshold: 100000000000000
 max_stake: 100000000000000000
+min_lockup_duration_secs: 0
+max_lockup_duration_secs: 2592000
 recurring_lockup_duration_secs: 86400
 required_proposer_stake: 100000000000000
 rewards_apy_percentage: 10
