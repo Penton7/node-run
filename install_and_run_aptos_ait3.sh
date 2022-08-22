@@ -79,5 +79,5 @@ wget https://github.com/aptos-labs/aptos-core/releases/download/aptos-framework-
 
 aptos genesis generate-genesis --assume-yes --local-repository-dir ~/$WORKSPACE --output-dir ~/$WORKSPACE
 sleep 2
-
+docker-compose pull
 docker-compose up -d
