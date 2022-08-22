@@ -72,8 +72,7 @@ rewards_apy_percentage: 10
 voting_duration_secs: 43200
 voting_power_increase_limit: 20" > layout.yaml
 
-wget https://github.com/aptos-labs/aptos-core/releases/download/aptos-framework-v0.3.0/framework.zip
-unzip framework.zip
+wget https://github.com/aptos-labs/aptos-core/releases/download/aptos-framework-v0.3.0/framework.mrb
 
 aptos genesis generate-genesis --assume-yes --local-repository-dir ~/$WORKSPACE --output-dir ~/$WORKSPACE
 sleep 2
