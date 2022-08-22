@@ -32,7 +32,7 @@ wget -qO $HOME/aptos.zip "https://github.com/aptos-labs/aptos-core/releases/down
 unzip $HOME/aptos.zip
 
 sudo cp ~/aptos /usr/bin/
-
+sudo cp ~/aptos /usr/local/bin/
 export WORKSPACE=aptos-ait3
 mkdir ~/$WORKSPACE
 cd ~/$WORKSPACE
