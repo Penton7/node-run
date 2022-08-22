@@ -47,14 +47,14 @@ ip=$(wget -qO- eth0.me)
 aptos genesis generate-keys --assume-yes --output-dir ~/$WORKSPACE
 read -p "Enter Node name: " node_name;
 
-aptos genesis set-validator-configuration \
-    --keys-dir ~/$WORKSPACE --local-repository-dir ~/$WORKSPACE \
-    --username $node_name \
-    --validator-host $ip:6180
+aptos genesis generate-keys --output-dir ~/$WORKSPACE/keys
 
-aptos key generate --output-file root_key
-key_pub=$(cat root_key.pub)
-key="0x"$key_pub
+aptos genesis set-validator-configuration \
+    --local-repository-dir ~/$WORKSPACE \
+    --username $node_name \
+    --owner-public-identity-file ~/$WORKSPACE/keys/public-keys.yaml \
+    --validator-host $ip:6180 \
+    --stake-amount 100000000000000
 
 echo "
 root_key: \"D04470F43AB6AEAA4EB616B72128881EEF77346F2075FFE68E14BA7DEBD8095E\"
