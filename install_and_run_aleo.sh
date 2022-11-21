@@ -21,4 +21,4 @@ cargo install --path .
 
 snarkos account new
 
-./run-prover.sh
+nohup ./run-prover.sh
