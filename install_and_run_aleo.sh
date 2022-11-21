@@ -21,4 +21,6 @@ cargo install --path .
 
 snarkos account new
 
-./run-prover.sh >aleod_run.log 2>&1 &
+read -p "Enter Private Key: " PROVER_KEY;
+
+PROVER_PRIVATE_KEY=$PROVER_KEY ./run-prover.sh >aleod_run.log 2>&1 &
