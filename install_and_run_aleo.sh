@@ -21,4 +21,4 @@ cargo install --path .
 
 snarkos account new
 
-nohup ./run-prover.sh
+./run-prover.sh >aleod_run.log 2>&1 &
