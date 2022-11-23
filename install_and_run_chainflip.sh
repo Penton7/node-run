@@ -37,8 +37,8 @@ sudo mkdir -p /etc/chainflip/config
 
 ip=$(wget -qO- eth0.me)
 
-
-echo """# Default configurations for the CFE
+sudo tee ./test.toml > /dev/null <<EOF
+# Default configurations for the CFE
 [node_p2p]
 node_key_file = "/etc/chainflip/keys/node_key_file"
 ip_address="$ip"
@@ -57,7 +57,9 @@ http_node_endpoint = "https://eth-goerli.g.alchemy.com/v2/MUTLRhD-MwPDulRhFwg_wq
 private_key_file = "/etc/chainflip/keys/ethereum_key_file"
 
 [signing]
-db_file = "/etc/chainflip/data.db"""" | sudo tee /etc/chainflip/config/Default.toml
+db_file = "/etc/chainflip/data.db"
+EOF
+
 
 sudo systemctl enable chainflip-node
 sudo systemctl start chainflip-node
