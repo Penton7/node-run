@@ -38,7 +38,7 @@ sudo mkdir -p /etc/chainflip/config
 ip=$(wget -qO- eth0.me)
 
 
-echo -e"""# Default configurations for the CFE
+echo """# Default configurations for the CFE
 [node_p2p]
 node_key_file = "/etc/chainflip/keys/node_key_file"
 ip_address="$ip"
