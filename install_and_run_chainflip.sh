@@ -39,25 +39,25 @@ ip=$(wget -qO- eth0.me)
 
 
 echo -e"""# Default configurations for the CFE
-        [node_p2p]
-        node_key_file = "/etc/chainflip/keys/node_key_file"
-        ip_address="$ip"
-        port = "8078"
+[node_p2p]
+node_key_file = "/etc/chainflip/keys/node_key_file"
+ip_address="$ip"
+port = "8078"
 
-        [state_chain]
-        ws_endpoint = "ws://127.0.0.1:9944"
-        signing_key_file = "/etc/chainflip/keys/signing_key_file"
+[state_chain]
+ws_endpoint = "ws://127.0.0.1:9944"
+signing_key_file = "/etc/chainflip/keys/signing_key_file"
 
-        [eth]
-        # Ethereum RPC endpoints (websocket and http for redundancy).
-        ws_node_endpoint = "wss://eth-goerli.g.alchemy.com/v2/MUTLRhD-MwPDulRhFwg_wqwn6wnQoMSF"
-        http_node_endpoint = "https://eth-goerli.g.alchemy.com/v2/MUTLRhD-MwPDulRhFwg_wqwn6wnQoMSF"
+[eth]
+# Ethereum RPC endpoints (websocket and http for redundancy).
+ws_node_endpoint = "wss://eth-goerli.g.alchemy.com/v2/MUTLRhD-MwPDulRhFwg_wqwn6wnQoMSF"
+http_node_endpoint = "https://eth-goerli.g.alchemy.com/v2/MUTLRhD-MwPDulRhFwg_wqwn6wnQoMSF"
 
-        # Ethereum private key file path. This file should contain a hex-encoded private key.
-        private_key_file = "/etc/chainflip/keys/ethereum_key_file"
+# Ethereum private key file path. This file should contain a hex-encoded private key.
+private_key_file = "/etc/chainflip/keys/ethereum_key_file"
 
-        [signing]
-        db_file = "/etc/chainflip/data.db"""" | sudo tee /etc/chainflip/config/Default.toml
+[signing]
+db_file = "/etc/chainflip/data.db"""" | sudo tee /etc/chainflip/config/Default.toml
 
 sudo systemctl enable chainflip-node
 sudo systemctl start chainflip-node
