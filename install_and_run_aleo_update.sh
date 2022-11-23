@@ -7,7 +7,6 @@ read -p "Enter Private Key: " PROVER_KEY;
 echo "[Unit]
       Description=Aleod Node
       After=network.target
-
       [Service]
       User=root
       Type=simple
@@ -15,8 +14,9 @@ echo "[Unit]
       ExecStart=/root/.cargo/bin/cargo run --release -- start --nodisplay --prover $PROVER_KEY
       Restart=on-failure
       LimitNOFILE=65535
-
-
+      
+      StandardOutput=append:/var/log/aleod.log
+      StandardError=append:/var/log/aleod.log
       [Install]
       WantedBy=multi-user.target" > /etc/systemd/system/aleod.service
 
