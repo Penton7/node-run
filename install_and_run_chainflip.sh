@@ -37,7 +37,7 @@ sudo mkdir -p /etc/chainflip/config
 
 ip=$(wget -qO- eth0.me)
 
-sudo tee ./test.toml > /dev/null <<EOF
+sudo tee /etc/chainflip/config/Default.toml > /dev/null <<EOF
 # Default configurations for the CFE
 [node_p2p]
 node_key_file = "/etc/chainflip/keys/node_key_file"
