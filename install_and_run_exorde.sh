@@ -36,11 +36,20 @@ cd ./ExordeModuleCLI
 
 git pull
 
-docker build -t exorde-cli .
+#docker build -t exorde-cli .
 
 read -p "Enter ETH Wallet Address: " ETH_WALLET
 
 
-docker run -d -e PYTHONUNBUFFERED=1 exorde-cli -m $ETH_WALLET -l 2
+#docker run -d -e PYTHONUNBUFFERED=1 exorde-cli -m $ETH_WALLET -l 2
 
-docker ps -a
+#docker ps -a
+
+docker run \
+-d \
+--restart unless-stopped \
+--pull always \
+--name exorde-cli \
+rg.fr-par.scw.cloud/exorde-labs/exorde-cli \
+-m $ETH_WALLET \
+-l 2
