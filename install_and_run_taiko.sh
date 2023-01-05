@@ -34,4 +34,4 @@ cd simple-taiko-node
 
 cp .env.sample .env
 
-docker-compose up
+docker-compose up -d
