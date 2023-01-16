@@ -6,6 +6,8 @@ sudo apt update
 
 sudo apt install make build-essential gcc git jq chrony -y
 
+rm -rvf /usr/local/go/
+
 wget -q -O - https://go.dev/dl/go1.19.5.linux-amd64.tar.gz | sudo tar xvzf - -C /usr/local
 
 cat <<EOT >> $HOME/.bashrc
