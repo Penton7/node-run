@@ -40,8 +40,8 @@ marsd keys add $key_name
 
 wget -O ~/.mars/config/genesis.json https://raw.githubusercontent.com/mars-protocol/networks/main/ares-1/genesis.json
 
-export SEEDS=TBD
-sed -i.bak -e "s/^seeds *=.*/seeds = \"$SEEDS\"/" ~/.mars/config/config.toml
+#export SEEDS=TBD
+#sed -i.bak -e "s/^seeds *=.*/seeds = \"$SEEDS\"/" ~/.mars/config/config.toml
 
 sudo cat <<EOF >> /etc/systemd/system/marsd.service
 [Unit]
