@@ -19,8 +19,6 @@ cd snarkOS
 
 cargo install --path .
 
-snarkos account new
-
 read -p "Enter Private Key: " PROVER_KEY;
 
 echo "[Unit]
