@@ -34,4 +34,14 @@ cd simple-taiko-node
 
 cp .env.sample .env
 
+read -p "Enter Private Key: " PRIVATE_KEY;
+
+read -p "Enter Wallet Address: " FEE_ADDRESS;
+
+sed 's/ENABLE_PROPOSER=false/ENABLE_PROPOSER=true/g' -i .env
+
+sed 's/L1_PROPOSER_PRIVATE_KEY=/L1_PROPOSER_PRIVATE_KEY=$PRIVATE_KEY/g' -i .env
+
+sed 's/L2_SUGGESTED_FEE_RECIPIENT=/L2_SUGGESTED_FEE_RECIPIENT=$FEE_ADDRESS/g' -i .env
+
 docker-compose up -d
