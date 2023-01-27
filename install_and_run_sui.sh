@@ -20,7 +20,7 @@ git clone https://github.com/MystenLabs/sui.git
 cd sui
 git remote add upstream https://github.com/MystenLabs/sui
 git fetch upstream
-git checkout --track upstream/devnet
+git checkout --track upstream/testnet
 cp crates/sui-config/data/fullnode-template.yaml /var/sui/fullnode.yaml
 #curl -fLJO https://github.com/MystenLabs/sui-genesis/raw/main/devnet/genesis.blob
 wget -O /var/sui/genesis.blob https://github.com/MystenLabs/sui-genesis/raw/main/devnet/genesis.blob
