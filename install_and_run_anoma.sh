@@ -5,7 +5,7 @@ sudo apt-get install -y make git-core libssl-dev pkg-config libclang-12-dev buil
 
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
-export NAMADA_TAG=v0.13.4
+export NAMADA_TAG=v0.14.1
 export TM_HASH=v0.1.4-abciplus
 
 git clone https://github.com/anoma/namada && cd namada && git checkout $NAMADA_TAG
@@ -20,7 +20,7 @@ make build
 
 namada --version
 
-export CHAIN_ID="public-testnet-3.0.81edd4d6eb6"
+export CHAIN_ID="public-testnet-4.0.16a35d789f4"
 namada client utils join-network --chain-id $CHAIN_ID
 
 sudo tee /etc/systemd/system/namada.service > /dev/null <<EOF
