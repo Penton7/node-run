@@ -101,8 +101,8 @@ else
   echo "..."
 fi
 
-curl -X POST -d '{"address": "'"$NIBIRU_ADDR"'", "coins": ["11000000unibi","100000000unusd","100000000uusdt"]}' $FAUCET_URL
+#curl -X POST -d '{"address": "'"$NIBIRU_ADDR"'", "coins": ["11000000unibi","100000000unusd","100000000uusdt"]}' $FAUCET_URL
 
-sleep 15
+#sleep 15
 
 #nibid query bank balances $NIBIRU_ADDR
