@@ -23,7 +23,7 @@ make build
 sudo mv ./build/nibid /usr/local/bin/
 cd $HOME
 
-read -p "enter node name: " node_name
+read -p "Enter node name: " node_name
 
 NIBIRU_MONIKER="$node_name"
 NIBIRU_CHAIN="nibiru-itn-1"
