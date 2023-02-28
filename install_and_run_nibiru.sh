@@ -105,4 +105,4 @@ curl -X POST -d '{"address": "'"$NIBIRU_ADDR"'", "coins": ["11000000unibi","1000
 
 sleep 15
 
-nibid query bank balances $NIBIRU_ADDR
+#nibid query bank balances $NIBIRU_ADDR
