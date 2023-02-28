@@ -50,6 +50,6 @@ docker run \
 --restart unless-stopped \
 --pull always \
 --name exorde-cli \
-rg.fr-par.scw.cloud/exorde-labs/exorde-cli \
+exordelabs/exorde-cli \
 -m $ETH_WALLET \
 -l 2
