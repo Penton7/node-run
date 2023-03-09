@@ -35,6 +35,6 @@ mkdir muon-node  && cd muon-node
 
 curl -o docker-compose.yml https://raw.githubusercontent.com/muon-protocol/muon-node-js/testnet/docker-compose-pull.yml
 
-docker compose up -d
+docker-compose up -d
 
 echo http://$(wget -qO- eth0.me):8000/status
