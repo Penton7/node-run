@@ -21,6 +21,9 @@ make build
 namada --version
 
 export CHAIN_ID="public-testnet-5.0.d25aa64ace6"
+
+cd ~
+
 namada client utils join-network --chain-id $CHAIN_ID
 
 sudo tee /etc/systemd/system/namada.service > /dev/null <<EOF
@@ -31,8 +34,8 @@ After=network.target
 [Service]
 Type=simple
 User=root
-WorkingDirectory=/root
-ExecStart=$(which namada) node ledger run
+WorkingDirectory=/root/.namada
+ExecStart=$(which namada) --base-dir=/root/.namada node ledger run
 Restart=always
 RestartSec=3
 LimitNOFILE=10000
