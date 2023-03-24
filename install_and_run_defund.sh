@@ -5,22 +5,22 @@
 #Env for node
 if [ ! $NODENAME ]; then
 	read -p "Enter node name: " NODENAME
-	echo 'export NODENAME='$NODENAME >> $HOME/.bash_profile
+	echo 'export DEFUND_MONIKER='$NODENAME >> $HOME/.bash_profile
 fi
 DEFUND_PORT=40
 if [ ! $WALLET ]; then
-	echo "export WALLET=wallet" >> $HOME/.bash_profile
+	echo "export DEFUND_WALLET=wallet" >> $HOME/.bash_profile
 fi
-echo "export DEFUND_CHAIN_ID=defund-private-2" >> $HOME/.bash_profile
+echo "export DEFUND_CHAIN=orbit-alpha-1" >> $HOME/.bash_profile
 echo "export DEFUND_PORT=${DEFUND_PORT}" >> $HOME/.bash_profile
 source $HOME/.bash_profile
 
 sudo apt-get update;
-sudo apt install curl build-essential git wget jq make gcc tmux chrony -y;
+sudo apt install make clang pkg-config libssl-dev build-essential git gcc chrony curl jq ncdu bsdmainutils htop net-tools lsof fail2ban wget -y;
 
 #check and install GOLANG
 if ! [ -x "$(command -v go)" ]; then
-  ver="1.18.2"
+  ver="1.19.4"
   cd $HOME
   wget "https://golang.org/dl/go$ver.linux-amd64.tar.gz"
   sudo rm -rf /usr/local/go
@@ -30,21 +30,80 @@ if ! [ -x "$(command -v go)" ]; then
   source ~/.bash_profile
 fi
 
+#clone; build; install
 cd $HOME && rm -rf defund
 git clone https://github.com/defund-labs/defund.git
 cd defund
-git checkout v0.1.0
+git checkout v0.2.6
 make install
+cd $HOME
+defundd version
 
-defundd config chain-id $DEFUND_CHAIN_ID
-defundd config keyring-backend test
-defundd config node tcp://localhost:${DEFUND_PORT}657
-defundd init $NODENAME --chain-id $DEFUND_CHAIN_ID
+defundd init $DEFUND_MONIKER --chain-id $DEFUND_CHAIN
 
-# download genesis and addrbook
-wget -qO $HOME/.defund/config/genesis.json "https://raw.githubusercontent.com/defund-labs/testnet/main/defund-private-2/genesis.json"
+SEEDS=f902d7562b7687000334369c491654e176afd26d@170.187.157.19:26656,2b76e96658f5e5a5130bc96d63f016073579b72d@rpc-1.defund.nodes.guru:45656
+sed -i.bak -e "s/^seeds *=.*/seeds = \"$SEEDS\"/" ~/.defund/config/config.toml
+peers="f902d7562b7687000334369c491654e176afd26d@170.187.157.19:26656,f8093378e2e5e8fc313f9285e96e70a11e4b58d5@rpc-2.defund.nodes.guru:45656,878c7b70a38f041d49928dc02418619f85eecbf6@rpc-3.defund.nodes.guru:45656"
+sed -i -e "s|^persistent_peers *=.*|persistent_peers = \"$peers\"|" $HOME/.defund/config/config.toml
 
-# set peers and seeds
-SEEDS="85279852bd306c385402185e0125dffeed36bf22@38.146.3.194:26656,09ce2d3fc0fdc9d1e879888e7d72ae0fefef6e3d@65.108.105.48:11256"
-PEERS=""
-sed -i -e "s/^seeds *=.*/seeds = \"$SEEDS\"/; s/^persistent_peers *=.*/persistent_peers = \"$PEERS\"/" $HOME/.defund/config/config.toml
+curl -s https://raw.githubusercontent.com/defund-labs/testnet/main/orbit-alpha-1/genesis.json > ~/.defund/config/genesis.json
+
+read -r -p "Create Pruning?[y/N] " response
+if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]
+then
+    pruning="custom"
+    pruning_keep_recent="1000"
+    pruning_keep_every="0"
+    pruning_interval="50"
+    sed -i -e "s/^pruning *=.*/pruning = \"$pruning\"/" $HOME/.defund/config/app.toml
+    sed -i -e "s/^pruning-keep-recent *=.*/pruning-keep-recent = \"$pruning_keep_recent\"/" $HOME/.defund/config/app.toml
+    sed -i -e "s/^pruning-keep-every *=.*/pruning-keep-every = \"$pruning_keep_every\"/" $HOME/.defund/config/app.toml
+    sed -i -e "s/^pruning-interval *=.*/pruning-interval = \"$pruning_interval\"/" $HOME/.defund/config/app.toml
+else
+    echo "next..."
+fi
+
+indexer="null" && \
+sed -i -e "s/^indexer *=.*/indexer = \"$indexer\"/" $HOME/.defund/config/config.toml
+
+sed -i.bak 's/minimum-gas-prices =.*/minimum-gas-prices = "0.0025ufetf"/g' $HOME/.defund/config/app.toml
+
+sudo tee /etc/systemd/system/defund.service > /dev/null <<EOF
+[Unit]
+Description=Defund
+After=network.target
+[Service]
+Type=simple
+User=$USER
+ExecStart=$(which defundd) start
+Restart=on-failure
+LimitNOFILE=65535
+[Install]
+WantedBy=multi-user.target
+EOF
+
+sudo systemctl restart systemd-journald
+sudo systemctl daemon-reload
+sudo systemctl enable defund
+sudo systemctl restart defund
+
+
+read -r -p "Do You Have Wallet?[y/N] " response
+if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]
+then
+  defundd keys add $DEFUND_WALLET --recover
+  DEFUND_ADDR=$(defundd keys show $DEFUND_WALLET -a)
+  echo 'export DEFUND_ADDR='${DEFUND_ADDR} >> $HOME/.bash_profile
+  source $HOME/.bash_profile
+else
+  defundd keys add $DEFUND_WALLET
+  DEFUND_ADDR=$(defundd keys show $DEFUND_WALLET -a)
+  echo "SAVE MNEMONIC!!!"
+  sleep 20
+  echo 'export DEFUND_ADDR='${DEFUND_ADDR} >> $HOME/.bash_profile
+  source $HOME/.bash_profile
+fi
+
+defundd query bank balances $DEFUND_ADDR
+
+
