@@ -52,4 +52,4 @@ EOF
 
 sudo systemctl daemon-reload
 sudo systemctl enable namada
-sudo systemctl start namada
+sudo systemctl restart namada
