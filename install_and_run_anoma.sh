@@ -5,22 +5,28 @@ sudo apt-get install -y make git-core libssl-dev pkg-config libclang-12-dev buil
 
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
-export NAMADA_TAG=v0.14.2
+export NAMADA_TAG=v0.14.3
 export TM_HASH=v0.1.4-abciplus
 
-git clone https://github.com/anoma/namada && cd namada && git checkout $NAMADA_TAG
+#git clone https://github.com/anoma/namada && cd namada && git checkout $NAMADA_TAG
+#
+##build
+#make build-release
+#make install
+#
+##install tendermint
+#git clone https://github.com/heliaxdev/tendermint && cd tendermint && git checkout $TM_HASH
+#make build
 
-#build
-make build-release
-make install
-
-#install tendermint
-git clone https://github.com/heliaxdev/tendermint && cd tendermint && git checkout $TM_HASH
-make build
+wget -qO $HOME/namada.tar.gz https://github.com/anoma/namada/releases/download/v0.14.3/namada-v0.14.3-Linux-x86_64.tar.gz
+rm -rf $HOME/namada-v0.14.3-Linux-x86_64/
+tar -xvf $HOME/namada.tar.gz
+cd namada-v0.14.3-Linux-x86_64
+cp namada* /usr/bin/
 
 namada --version
 
-export CHAIN_ID="public-testnet-5.0.d25aa64ace6"
+export CHAIN_ID="public-testnet-6.0.a0266444b06"
 
 cd ~
 
@@ -35,7 +41,7 @@ After=network.target
 Type=simple
 User=root
 WorkingDirectory=/root/.namada
-ExecStart=$(which namada) --base-dir=/root/.namada node ledger run
+ExecStart=/usr/bin/namada --base-dir=/root/.namada node ledger run
 Restart=always
 RestartSec=3
 LimitNOFILE=10000
