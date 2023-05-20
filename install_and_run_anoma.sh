@@ -23,6 +23,7 @@ rm -rf $HOME/namada-v0.15.3-Linux-x86_64/
 tar -xvf $HOME/namada.tar.gz
 cd namada-v0.15.3-Linux-x86_64
 cp namada* /usr/bin/
+cp namada* /usr/local/bin/
 
 namada --version
 
@@ -40,13 +41,15 @@ Description=Namada Node
 After=network.target
 
 [Service]
+User=$USER
+WorkingDirectory=$HOME/.local/share/namada
 Type=simple
-User=root
-WorkingDirectory=/root/.namada
-ExecStart=/usr/bin/namada --base-dir=/root/local/share/namada node ledger run
+ExecStart=/usr/local/bin/namada --base-dir=$HOME/.local/share/namada node ledger run
+Environment=NAMADA_TM_STDOUT=true
+RemainAfterExit=no
 Restart=always
-RestartSec=3
-LimitNOFILE=10000
+RestartSec=5s
+LimitNOFILE=65535
 
 [Install]
 WantedBy=multi-user.target
