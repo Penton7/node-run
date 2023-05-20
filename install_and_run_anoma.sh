@@ -26,13 +26,12 @@ cp namada* /usr/bin/
 
 namada --version
 
-read -p "Enter node name: " ALIAS
 
 export CHAIN_ID="public-testnet-8.0.b92ef72b820"
 
 cd ~
 
-namada client utils join-network --chain-id $CHAIN_ID --genesis-validator $ALIAS
+namada client utils join-network --chain-id $CHAIN_ID
 
 sudo tee /etc/systemd/system/namada.service > /dev/null <<EOF
 [Unit]
