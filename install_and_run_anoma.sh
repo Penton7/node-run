@@ -18,7 +18,7 @@ export TM_HASH=v0.1.5-abciplus
 #git clone https://github.com/heliaxdev/tendermint && cd tendermint && git checkout $TM_HASH
 #make build
 
-wget -qO $HOME/namada.tar.gz https://github.com/anoma/namada/releases/download/v0.14.3/namada-v0.15.3-Linux-x86_64.tar.gz
+wget -qO $HOME/namada.tar.gz https://github.com/anoma/namada/releases/download/v0.15.3/namada-v0.15.3-Linux-x86_64.tar.gz
 rm -rf $HOME/namada-v0.15.3-Linux-x86_64/
 tar -xvf $HOME/namada.tar.gz
 cd namada-v0.15.3-Linux-x86_64
