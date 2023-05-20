@@ -5,8 +5,8 @@ sudo apt-get install -y make git-core libssl-dev pkg-config libclang-12-dev buil
 
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
-export NAMADA_TAG=v0.14.3
-export TM_HASH=v0.1.4-abciplus
+export NAMADA_TAG=v0.15.3
+export TM_HASH=v0.1.5-abciplus
 
 #git clone https://github.com/anoma/namada && cd namada && git checkout $NAMADA_TAG
 #
@@ -18,19 +18,21 @@ export TM_HASH=v0.1.4-abciplus
 #git clone https://github.com/heliaxdev/tendermint && cd tendermint && git checkout $TM_HASH
 #make build
 
-wget -qO $HOME/namada.tar.gz https://github.com/anoma/namada/releases/download/v0.14.3/namada-v0.14.3-Linux-x86_64.tar.gz
-rm -rf $HOME/namada-v0.14.3-Linux-x86_64/
+wget -qO $HOME/namada.tar.gz https://github.com/anoma/namada/releases/download/v0.14.3/namada-v0.15.3-Linux-x86_64.tar.gz
+rm -rf $HOME/namada-v0.15.3-Linux-x86_64/
 tar -xvf $HOME/namada.tar.gz
-cd namada-v0.14.3-Linux-x86_64
+cd namada-v0.15.3-Linux-x86_64
 cp namada* /usr/bin/
 
 namada --version
 
-export CHAIN_ID="public-testnet-6.0.a0266444b06"
+read -p "Enter node name: " ALIAS
+
+export CHAIN_ID="public-testnet-8.0.b92ef72b820"
 
 cd ~
 
-namada client utils join-network --chain-id $CHAIN_ID
+namada client utils join-network --chain-id $CHAIN_ID --genesis-validator $ALIAS
 
 sudo tee /etc/systemd/system/namada.service > /dev/null <<EOF
 [Unit]
