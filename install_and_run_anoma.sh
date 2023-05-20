@@ -26,6 +26,7 @@ cp namada* /usr/bin/
 
 namada --version
 
+read -p "Enter Validator name: " ALIAS
 
 export CHAIN_ID="public-testnet-8.0.b92ef72b820"
 
