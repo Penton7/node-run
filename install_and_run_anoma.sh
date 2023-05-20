@@ -43,7 +43,7 @@ After=network.target
 Type=simple
 User=root
 WorkingDirectory=/root/.namada
-ExecStart=/usr/bin/namada --base-dir=/root/.namada node ledger run
+ExecStart=/usr/bin/namada --base-dir=/root/local/share/namada node ledger run
 Restart=always
 RestartSec=3
 LimitNOFILE=10000
