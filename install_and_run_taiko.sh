@@ -40,9 +40,6 @@ read -p "Enter Private Key: " PRIVATE_KEY;
 
 sed -i "s/ENABLE_PROVER=false/ENABLE_PROVER=true/g" .env
 
-sed -i "s/ENABLE_PROVER=false/ENABLE_PROVER=true/g" .env
-
-
 read -p "Enter Sepolia WSS Endpoint: " L1_ENDPOINT_WS;
 read -p "Enter Sepolia HTTP Endpoint: " L1_ENDPOINT_HTTP;
 
