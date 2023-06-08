@@ -38,7 +38,6 @@ read -p "Enter Private Key: " PRIVATE_KEY;
 
 #read -p "Enter Wallet Address: " FEE_ADDRESS;
 
-L1_ENDPOINT_WS=
 sed -i "s/ENABLE_PROVER=false/ENABLE_PROVER=true/g" .env
 
 sed -i "s/ENABLE_PROVER=false/ENABLE_PROVER=true/g" .env
