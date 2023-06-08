@@ -42,13 +42,13 @@ sed -i "s/ENABLE_PROVER=false/ENABLE_PROVER=true/g" .env
 
 sed -i "s/ENABLE_PROVER=false/ENABLE_PROVER=true/g" .env
 
-read -p "Enter Sepolia HTTP Endpoint: " L1_ENDPOINT_HTTP;
 
 read -p "Enter Sepolia WSS Endpoint: " L1_ENDPOINT_WS;
+read -p "Enter Sepolia HTTP Endpoint: " L1_ENDPOINT_HTTP;
 
-sed "s/L1_ENDPOINT_HTTP=/L1_ENDPOINT_HTTP=$L1_ENDPOINT_HTTP/g" -i .env
+sed -i "s/L1_ENDPOINT_HTTP=/L1_ENDPOINT_HTTP=$L1_ENDPOINT_HTTP/g" .env
 
-sed "s/L1_ENDPOINT_WS=/L1_ENDPOINT_WS=$L1_ENDPOINT_WS/g" -i .env
+sed -i "s/L1_ENDPOINT_WS=/L1_ENDPOINT_WS=$L1_ENDPOINT_WS/g" .env
 
 
 #sed "s/L2_SUGGESTED_FEE_RECIPIENT=/L2_SUGGESTED_FEE_RECIPIENT=$FEE_ADDRESS/g" -i .env.sample
