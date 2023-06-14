@@ -51,5 +51,5 @@ docker run \
 --pull always \
 --name exorde-cli \
 exordelabs/exorde-cli \
--m $ETH_WALLET \
+--main_address $ETH_WALLET \
 -l 2
