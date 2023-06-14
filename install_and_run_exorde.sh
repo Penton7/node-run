@@ -51,6 +51,5 @@ read -p "Enter ETH Wallet Address: " ETH_WALLET
 docker run \
 -d \
 --restart unless-stopped \
---pull always \
 --name exorde-client \
-exordelabs/exorde-client --main_address $ETH_WALLET
+exorde-client --main_address $ETH_WALLET
