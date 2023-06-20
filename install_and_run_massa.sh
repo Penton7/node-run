@@ -49,13 +49,13 @@ WantedBy=multi-user.target" | sudo tee /etc/systemd/system/massad.service
 sudo systemctl enable massad
 sudo systemctl daemon-reload
 
-time=date +"%Y-%m-%d_%T"
+#time=date +"%Y-%m-%d_%T"
 
-mkdir $HOME/massa_backup
-mkdir $HOME/massa_backup/time_$time
+#mkdir $HOME/massa_backup
+#mkdir $HOME/massa_backup/time_$time
 
-cp $HOME/massa/massa-node/config/node_privkey.key $HOME/massa_backup/time_$time/
-cp $HOME/massa/massa-client/wallet.dat $HOME/massa_backup/time_$time/
+#cp $HOME/massa/massa-node/config/node_privkey.key $HOME/massa_backup/time_$time/
+#cp $HOME/massa/massa-client/wallet.dat $HOME/massa_backup/time_$time/
 #sudo cp $HOME/massa_backup/node_privkey.key $HOME/massa/massa-node/config/node_privkey.key
 open_ports
 
