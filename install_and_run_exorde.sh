@@ -30,16 +30,16 @@ sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
 
 cd $HOME
 
-wget https://github.com/exorde-labs/exorde-client/archive/refs/heads/main.zip \
---output-document=exorde-client.zip
-
-unzip exorde-client.zip \
-&& rm exorde-client.zip \
-&& mv exorde-client-main exorde-client
-
-cd exorde-client
-
-docker build -t exorde-client:latest .
+#wget https://github.com/exorde-labs/exorde-client/archive/refs/heads/main.zip \
+#--output-document=exorde-client.zip
+#
+#unzip exorde-client.zip \
+#&& rm exorde-client.zip \
+#&& mv exorde-client-main exorde-client
+#
+#cd exorde-client
+#
+#docker build -t exorde-client:latest .
 
 read -p "Enter ETH Wallet Address: " ETH_WALLET
 
@@ -47,9 +47,18 @@ read -p "Enter ETH Wallet Address: " ETH_WALLET
 #docker run -d -e PYTHONUNBUFFERED=1 exorde-cli -m $ETH_WALLET -l 2
 
 #docker ps -a
+docker stop exorde-cli && docker rm exorde-cli
 
 docker run \
 -d \
 --restart unless-stopped \
---name exorde-client \
-exorde-client --main_address $ETH_WALLET
+--pull always \
+--name exorde-cli \
+exordelabs/exorde-client \
+--main_address $ETH_WALLET
+
+#docker run \
+#-d \
+#--restart unless-stopped \
+#--name exorde-client \
+#exorde-client --main_address $ETH_WALLET
