@@ -7,6 +7,8 @@ rm -rf $HOME/massa/
 tar -xvf $HOME/massa.tar.gz
 chmod +x $HOME/massa/massa-node/massa-node $HOME/massa/massa-client/massa-client
 
+read -p "Enter Password for node:" password;
+
 echo "[Unit]
 Description=Massa Node
 After=network-online.target
@@ -14,7 +16,7 @@ After=network-online.target
 [Service]
 User=$USER
 WorkingDirectory=$HOME/massa/massa-node
-ExecStart=$HOME/massa/massa-node/massa-node
+ExecStart=$HOME/massa/massa-node/massa-node -p $password
 Restart=on-failure
 RestartSec=3
 LimitNOFILE=65535
