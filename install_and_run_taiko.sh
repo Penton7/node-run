@@ -32,6 +32,8 @@ git clone https://github.com/taikoxyz/simple-taiko-node.git
 
 cd simple-taiko-node
 
+git pull
+
 cp .env.sample .env
 
 read -p "Enter Private Key: " PRIVATE_KEY;
