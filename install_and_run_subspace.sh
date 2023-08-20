@@ -9,6 +9,8 @@ wget -O subspace-farmer https://github.com/subspace/subspace/releases/download/g
 chmod +x subspace*
 mv subspace* /usr/local/bin/
 
+mkdir /home/subspace
+
 read -p "Enter Node Name: " SUBSPACE_NODENAME;
 read -p "Enter Your Wallet: " SUBSPACE_WALLET;
 
@@ -40,7 +42,7 @@ After=network.target
 [Service]
 User=$USER
 Type=simple
-ExecStart=$(which subspace-farmer) farm --reward-address $SUBSPACE_WALLET
+ExecStart=$(which subspace-farmer) farm path=/home/subspace/,size=20GB --reward-address $SUBSPACE_WALLET
 Restart=on-failure
 LimitNOFILE=65535
 
