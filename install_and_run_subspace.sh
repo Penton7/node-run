@@ -4,8 +4,8 @@
 
 cd $HOME
 rm -rf subspace*
-wget -O subspace-node https://github.com/subspace/subspace/releases/download/gemini-3e-2023-jul-03/subspace-node-ubuntu-x86_64-v2-gemini-3e-2023-jul-03
-wget -O subspace-farmer https://github.com/subspace/subspace/releases/download/gemini-3e-2023-jul-03/subspace-farmer-ubuntu-x86_64-v2-gemini-3e-2023-jul-03
+wget -O subspace-node https://github.com/subspace/subspace/releases/download/gemini-3f-2023-aug-18/subspace-node-ubuntu-x86_64-v2-gemini-3f-2023-aug-18
+wget -O subspace-farmer https://github.com/subspace/subspace/releases/download/gemini-3f-2023-aug-18/subspace-farmer-ubuntu-x86_64-v2-gemini-3f-2023-aug-18
 chmod +x subspace*
 mv subspace* /usr/local/bin/
 
@@ -25,7 +25,7 @@ After=network.target
 [Service]
 User=$USER
 Type=simple
-ExecStart=$(which subspace-node) --chain gemini-3e --wasm-execution compiled --execution wasm --rpc-cors all --rpc-methods unsafe --ws-external --validator --telemetry-url \"wss://telemetry.polkadot.io/submit/ 1\" --telemetry-url \"wss://telemetry.subspace.network/submit 1\" --name $SUBSPACE_NODENAME
+ExecStart=$(which subspace-node) --chain gemini-3f --wasm-execution compiled --execution wasm --rpc-cors all --rpc-methods unsafe --ws-external --validator --telemetry-url \"wss://telemetry.polkadot.io/submit/ 1\" --telemetry-url \"wss://telemetry.subspace.network/submit 1\" --name $SUBSPACE_NODENAME
 Restart=on-failure
 LimitNOFILE=65535
 
