@@ -25,7 +25,7 @@ After=network.target
 [Service]
 User=$USER
 Type=simple
-ExecStart=$(which subspace-node) --chain gemini-3f --wasm-execution compiled --execution wasm --rpc-cors all --rpc-methods unsafe --ws-external --validator --telemetry-url \"wss://telemetry.polkadot.io/submit/ 1\" --telemetry-url \"wss://telemetry.subspace.network/submit 1\" --name $SUBSPACE_NODENAME
+ExecStart=$(which subspace-node) --chain gemini-3f --execution wasm --blocks-pruning 256 --state-pruning archive --no-private-ipv4 --validator --name $SUBSPACE_NODENAME
 Restart=on-failure
 LimitNOFILE=65535
 
@@ -40,7 +40,7 @@ After=network.target
 [Service]
 User=$USER
 Type=simple
-ExecStart=$(which subspace-farmer) farm --disable-private-ips --reward-address $SUBSPACE_WALLET --plot-size 20G
+ExecStart=$(which subspace-farmer) farm --reward-address $SUBSPACE_WALLET
 Restart=on-failure
 LimitNOFILE=65535
 
