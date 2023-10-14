@@ -42,7 +42,7 @@ After=network.target
 [Service]
 User=$USER
 Type=simple
-ExecStart=$(which subspace-farmer) farm path=/home/subspace/,size=20GB --reward-address $SUBSPACE_WALLET
+ExecStart=$(which subspace-farmer) farm path=/home/subspace/,size=40GB --reward-address $SUBSPACE_WALLET
 Restart=on-failure
 LimitNOFILE=65535
 
