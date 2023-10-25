@@ -48,7 +48,7 @@ fi
 
 cd fleek
 
-docker-compose.yml <(wget -qO- https://raw.githubusercontent.com/Penton7/node-run/main/compose-files/docker-compose.fleek.yml)
+wget -qO- https://raw.githubusercontent.com/Penton7/node-run/main/compose-files/docker-compose.fleek.yml > docker-compose.yml
 
 docker-compose pull
 
