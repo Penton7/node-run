@@ -1,0 +1,10 @@
+version: '3'
+services:
+    lightning-node:
+      image: ghcr.io/fleek-network/lightning:latest
+      ports:
+        - 4200-4299:4200-4299/tcp
+        - 4300-4399:4300-4399/udp
+      volumes:
+        - $HOME/.lightning:/root/.lightning:rw
+      tty: true
