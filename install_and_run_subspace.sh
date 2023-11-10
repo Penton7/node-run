@@ -4,8 +4,8 @@
 
 cd $HOME
 rm -rf subspace*
-wget -O subspace-node https://github.com/subspace/subspace/releases/download/gemini-3f-2023-oct-06/subspace-node-ubuntu-x86_64-v2-gemini-3f-2023-oct-06
-wget -O subspace-farmer https://github.com/subspace/subspace/releases/download/gemini-3f-2023-oct-06/subspace-farmer-ubuntu-x86_64-v2-gemini-3f-2023-oct-06
+wget -O subspace-node https://github.com/subspace/subspace/releases/download/gemini-3g-2023-nov-09/subspace-node-ubuntu-x86_64-v2-gemini-3g-2023-nov-09
+wget -O subspace-farmer https://github.com/subspace/subspace/releases/download/gemini-3g-2023-nov-09/subspace-farmer-ubuntu-x86_64-v2-gemini-3g-2023-nov-09
 chmod +x subspace*
 mv subspace* /usr/local/bin/
 
@@ -27,7 +27,7 @@ After=network.target
 [Service]
 User=$USER
 Type=simple
-ExecStart=$(which subspace-node) --chain gemini-3f --execution wasm --blocks-pruning 256 --state-pruning archive --no-private-ipv4 --validator --name $SUBSPACE_NODENAME
+ExecStart=$(which subspace-node) --chain gemini-3g --execution wasm --blocks-pruning 256 --state-pruning archive --no-private-ipv4 --validator --name $SUBSPACE_NODENAME
 Restart=on-failure
 LimitNOFILE=65535
 

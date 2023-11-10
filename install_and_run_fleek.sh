@@ -30,30 +30,12 @@ sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
 
 cd $HOME
 
-if [ -d "$HOME/.lightning" ]; then
-  echo "Directory exist..."
-else
-  echo "Directory not found. Creating..."
-  mkdir .lightning
-fi
+mkdir .lightning
 
-echo "Creating FLEEK dir..."
-
-if [ -d "$HOME/fleek" ]; then
-  echo "Directory exist..."
-else
-  echo "Directory not found. Creating..."
-  mkdir fleek
-fi
-
-cd fleek
-
-wget -qO- https://raw.githubusercontent.com/Penton7/node-run/main/compose-files/docker-compose.fleek.yml > docker-compose.yml
-
-docker-compose pull
-
-docker-compose run -d
-
-echo "Node started."
-
-echo "Check logs command:  docker-compose logs"
+sudo docker run \
+    -d \
+    -p 4200-4299:4200-4299 \
+    -p 4300-4399:4300-4399 \
+    --mount type=bind,source=$HOME/.lightning,target=/root/.lightning \
+    --name lightning-node \
+    -it ghcr.io/fleek-network/lightning:latest
