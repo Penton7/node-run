@@ -4,8 +4,8 @@
 
 cd $HOME
 rm -rf subspace*
-wget -O subspace-node https://github.com/subspace/subspace/releases/download/gemini-3g-2023-nov-09/subspace-node-ubuntu-x86_64-v2-gemini-3g-2023-nov-09
-wget -O subspace-farmer https://github.com/subspace/subspace/releases/download/gemini-3g-2023-nov-09/subspace-farmer-ubuntu-x86_64-v2-gemini-3g-2023-nov-09
+wget -O subspace-node https://github.com/subspace/subspace/releases/download/gemini-3g-2023-dec-18-2/subspace-node-ubuntu-x86_64-v2-gemini-3g-2023-dec-18-2
+wget -O subspace-farmer https://github.com/subspace/subspace/releases/download/gemini-3g-2023-dec-18-2/subspace-farmer-ubuntu-x86_64-v2-gemini-3g-2023-dec-18-2
 chmod +x subspace*
 mv subspace* /usr/local/bin/
 
