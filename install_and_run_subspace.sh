@@ -56,5 +56,5 @@ sudo systemctl restart systemd-journald
 sudo systemctl daemon-reload
 sudo systemctl enable subspaced subspaced-farmer
 sudo systemctl restart subspaced
-sleep 30
+sleep 40
 sudo systemctl restart subspaced-farmer
