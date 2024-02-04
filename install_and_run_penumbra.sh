@@ -16,9 +16,10 @@ sudo apt-get update
 sudo apt-get install -y build-essential pkg-config libssl-dev clang git-lfs tmux libclang-dev curl
 
 # Install Go
-GO_VERSION="1.18"
+GO_VERSION="1.20"
 wget https://dl.google.com/go/go${GO_VERSION}.linux-amd64.tar.gz
 sudo tar -xvf go${GO_VERSION}.linux-amd64.tar.gz
+sudo rm -rf /usr/local/go
 sudo mv go /usr/local
 
 # Set Go environment variables
