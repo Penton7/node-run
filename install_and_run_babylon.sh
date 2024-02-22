@@ -14,8 +14,10 @@ sudo apt -qy upgrade
 
 
 #install GOLANG
-sudo rm -rf /usr/local/go
-curl -Ls https://go.dev/dl/go1.21.6.linux-amd64.tar.gz | sudo tar -xzf - -C /usr/local
+sudo rm -rf /usr/local/go /usr/bin/go
+wget -q https://go.dev/dl/go1.21.6.linux-amd64.tar.gz
+sudo tar -xzf go1.21.6.linux-amd64.tar.gz -C /usr/local
+sudo tar -xzf go1.21.6.linux-amd64.tar.gz -C /usr/bin
 eval $(echo 'export PATH=$PATH:/usr/local/go/bin' | sudo tee /etc/profile.d/golang.sh)
 eval $(echo 'export PATH=$PATH:$HOME/go/bin' | tee -a $HOME/.profile)
 
