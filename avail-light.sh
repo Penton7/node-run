@@ -254,7 +254,7 @@ StartLimitIntervalSec=0
 
 [Service]
 User=$USER
-ExecStart=$HOME/.avail/bin/avail-light --network goldberg --config $HOME/.avail/config/config.yml --identity $HOME/.avail/identity/identity.toml
+ExecStart=$HOME/.avail/bin/avail-light --config $HOME/.avail/config/config.yml --identity $HOME/.avail/identity/identity.toml
 Restart=on-failure
 RestartSec=5s
 
