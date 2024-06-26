@@ -26,5 +26,3 @@ checkDocker
 
 
 screen -S farfcaster
-
-curl -sSL https://download.thehubble.xyz/bootstrap.sh | bash
