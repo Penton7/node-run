@@ -13,6 +13,12 @@ function checkDocker {
       sudo chmod 666 /var/run/docker.sock
 
       sudo systemctl restart docker
+
+      curl -SL https://github.com/docker/compose/releases/download/v2.5.0/docker-compose-linux-x86_64 -o /usr/local/bin/docker-compose
+
+      sudo chmod +x /usr/local/bin/docker-compose
+
+      sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
   fi
 }
 
@@ -22,22 +28,18 @@ sudo apt update & sudo apt upgrade -y;
 
 sudo apt install ca-certificates zlib1g-dev libncurses5-dev libgdbm-dev libnss3-dev curl git wget make jq build-essential pkg-config lsb-release libssl-dev libreadline-dev libffi-dev gcc screen unzip lz4 -y;
 
-checkDocker
-
 sudo apt install python3 python3-pip -y
 
-curl -SL https://github.com/docker/compose/releases/download/v2.5.0/docker-compose-linux-x86_64 -o /usr/local/bin/docker-compose
-sudo chmod +x /usr/local/bin/docker-compose
-sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+checkDocker
 
 echo -e "Installing Go..."
 cd $HOME
 
-wget https://golang.org/dl/go.linux-amd64.tar.gz;
+wget https://go.dev/dl/go1.21.12.linux-amd64.tar.gz;
 
-sudo rm -rf /usr/local/go && sudo tar -C /usr/local -xzf go1.21.3.linux-amd64.tar.gz;
+sudo rm -rf /usr/local/go && sudo tar -C /usr/local -xzf go1.21.12.linux-amd64.tar.gz;
 
-rm go1.21.3.linux-amd64.tar.gz
+rm go1.21.12.linux-amd64.tar.gz
 
 echo "export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin" >> $HOME/.bash_profile
 source $HOME/.bash_profile
@@ -73,6 +75,7 @@ sudo docker run -it --entrypoint=bash -v $(pwd)/worker-data:/data alloranetwork/
 
 echo -e "This is your Head ID: "
 cat head-data/keys/identity
+echo " "
 
 if [ -f docker-compose.yml ]; then
     rm docker-compose.yml
@@ -88,7 +91,7 @@ echo
 read -p "Enter TOPIC_ID: " TOPIC_ID
 echo
 
-echo -e "${BOLD}${UNDERLINE}${DARK_YELLOW}Generating docker-compose.yml file...${RESET}"
+echo -e "Generating docker-compose.yml file..."
 cat <<EOF > docker-compose.yml
 version: '3'
 services:
