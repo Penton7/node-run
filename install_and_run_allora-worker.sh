@@ -219,6 +219,9 @@ EOF
 echo -e "docker-compose.yml file generated successfully!"
 echo
 
+echo -e "Remove old unused docker networks!"
+docker network rm $(docker network ls -q)
+
 echo -e "Building and starting Docker containers..."
 docker-compose build
 docker-compose up -d
